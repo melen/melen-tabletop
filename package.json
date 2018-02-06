@@ -1,0 +1,24 @@
+{
+  "name": "melen-tabletop",
+  "version": "1.0.0",
+  "description": "Backend for online tabletop",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/melen/melen-tabletop.git"
+  },
+  "author": "melen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/melen/melen-tabletop/issues"
+  },
+  "homepage": "https://github.com/melen/melen-tabletop#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "express-jwt": "^5.3.0"
+  }
+}
