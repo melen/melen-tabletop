@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/melen/melen-tabletop#readme",
   "dependencies": {
+    "aws-sdk": "^2.189.0",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "express-jwt": "^5.3.0"

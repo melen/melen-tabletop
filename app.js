@@ -2,6 +2,7 @@
 
 const express = require('express');
 const jwt = require('express-jwt');
+const AWS = require('aws-sdk');
 const config = require('config/config');
 const app = express();
 
