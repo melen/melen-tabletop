@@ -1,0 +1,14 @@
+machine:
+  node:
+    version: 7.10
+
+dependencies:
+  override:
+    - npm install
+
+deployment:
+  production:
+    branch: master
+    codedeploy:
+      my-app:
+        deployment_group: MelenTabletop-DepGroup
