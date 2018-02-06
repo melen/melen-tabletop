@@ -10,5 +10,13 @@ deployment:
   production:
     branch: master
     codedeploy:
-      my-app:
+      MelenTabletop-App:
+        application_root: /
+        revision_location:
+          revision_type: S3
+          s3_location:
+            bucket: melen-tabletop
+            key_pattern: apps/my-app-{SHORT_COMMIT}-{BUILD_NUM}
+        region: us-east-1
         deployment_group: MelenTabletop-DepGroup
+        deployment_config: CodeDeployDefault.AllAtOnce
