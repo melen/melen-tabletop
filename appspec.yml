@@ -1,2 +1,10 @@
 version: 0.0
 os: linux
+files:
+  - source:
+    destination: /home/ubuntu/tabletop
+hooks:
+  ApplicationStart:
+    - location: run
+      timeout: 300
+      runas: root
