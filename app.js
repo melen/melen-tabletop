@@ -2,11 +2,11 @@
 
 const express = require('express');
 const jwt = require('express-jwt');
-const AWS = require('aws-sdk');
 const config = require('./config/config');
 const app = express();
 
-app.use(jwt({secret: config.jwt_secret}));
+// app.use(jwt({secret: config.jwt_secret}));
+let port = 3000;
 
 // Handles User level data
 let UserController = require('./controllers/UserController');
@@ -21,7 +21,9 @@ let CharacterController = require('./controllers/CharacterController');
 app.use('/character/', CharacterController);
 
 app.listen(port, function () {
-    console.log("Currently running on port "+port)
-})
+    console.log("Currently running on port "+port);
+});
 
-module.exports = app;
+module.exports = {
+    app: app
+};
