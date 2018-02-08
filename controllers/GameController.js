@@ -1,9 +1,7 @@
 let express = require('express');
 let router = express.Router();
-let bodyParser = require('body-parser');
 let Game = require('../models/Game');
-router.use(bodyParser.urlencoded({ extended: true }));
-router.use(bodyParser.json());
+let auth = require('../auth/auth');
 
 let gameModel = new Game();
 
@@ -13,20 +11,20 @@ router.get('/create', (req, res) => {
     }).on('success', function (response) {
         res.send("Created")
     }).on('error', function (response) {
-        res.send(JSON.stringify(response, null, 2))
+        res.status(400).send(JSON.stringify(response, null, 2))
     });
 });
 
-router.get('/:id', auth.jwt, (req, res) => {
-    gameModel.getUser()
+router.get('/:id', auth.jwt, auth.validateGame, (req, res) => {
+    gameModel.getGame()
 });
 
 router.put('/:id', auth.jwt, (req, res) => {
-    gameModel.updateUser()
+    gameModel.updateGame()
 });
 
 router.delete('/:id', auth.jwt, (req, res) => {
-    gameModel.deleteUser()
+    gameModel.deleteGame()
 });
 
 module.exports = router;

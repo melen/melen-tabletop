@@ -1,10 +1,9 @@
 let express = require('express');
 let router = express.Router();
-let bodyParser = require('body-parser');
 let User = require('../models/User');
 let auth = require('../auth/auth');
-router.use(bodyParser.urlencoded({ extended: true }));
-router.use(bodyParser.json());
+let jwt = require('jsonwebtoken');
+const config = require('../config/config');
 
 let userModel = new User();
 
@@ -14,19 +13,29 @@ router.post('/create', (req, res) => {
     }).on('success', function (response) {
         res.send("Created")
     }).on('error', function (response) {
-        res.send(JSON.stringify(response, null, 2))
+        res.status(400).send(JSON.stringify(response, null, 2))
     });
 });
 
-router.get('/:id', auth.jwt, auth.validate, (req, res) => {
+router.post('/login', (req, res) => {
+    if (auth.validateLogin(req.body)) {
+        res.send(jwt.sign({
+            id: req.body.id
+        }, config.jwt_secret, { expiresIn: '24h'}));
+    } else {
+        res.status(403).send({error: "Invalid username or password"});
+    }
+});
+
+router.get('/:id', auth.jwt, auth.validateUser, (req, res) => {
     userModel.getUser()
 });
 
-router.put('/:id', auth.jwt, auth.validate, (req, res) => {
+router.put('/:id', auth.jwt, auth.validateUser, (req, res) => {
     userModel.updateUser()
 });
 
-router.delete('/:id', auth.jwt, auth.validate, (req, res) => {
+router.delete('/:id', auth.jwt, auth.validateUser, (req, res) => {
     userModel.deleteUser()
 });
 

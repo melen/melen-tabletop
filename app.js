@@ -1,9 +1,13 @@
 'use strict'
 
 const express = require('express');
+let bodyParser = require('body-parser');
 const app = express();
 
 let port = 3000;
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // Handles User level data
 let UserController = require('./controllers/UserController');
