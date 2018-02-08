@@ -2,10 +2,36 @@ const uuid = require("uuid4");
 let db = require('../db');
 
 class Game {
-    createUser(data) {
+    createGame(data) {
         let params = {
             "id": {S: uuid()},
-            "name": {S: data.name}
+            "players": {L: [
+                    {
+                        M: {
+                            id: {S: uuid()},
+                            name: {S: "name here"},
+                        }
+                    },
+                    {
+                        M: {
+                            id: {S: uuid()},
+                            name: {S: "name here"},
+                        }
+                    },
+                    {
+                        M: {
+                            id: {S: uuid()},
+                            name: {S: "name here"},
+                        }
+                    },
+                    {
+                        M: {
+                            id: {S: uuid()},
+                            name: {S: "name here"},
+                        }
+                    }
+                ]},
+            "dm": {S: uuid()}
         };
         return db.putItem({
             TableName: "Games",
@@ -17,6 +43,17 @@ class Game {
                 console.log("Added item:", JSON.stringify(params, null, 2));
             }
         })
+    }
+    getGame(data) {
+
+    }
+
+    updateGame(data) {
+
+    }
+
+    deleteGame() {
+
     }
 }
 

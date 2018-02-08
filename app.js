@@ -1,11 +1,8 @@
 'use strict'
 
 const express = require('express');
-const jwt = require('express-jwt');
-const config = require('./config/config');
 const app = express();
 
-// app.use(jwt({secret: config.jwt_secret}));
 let port = 3000;
 
 // Handles User level data

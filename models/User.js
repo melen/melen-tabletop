@@ -18,6 +18,18 @@ class User {
             }
         })
     }
+
+    getUser(data) {
+
+    }
+
+    updateUser(data) {
+
+    }
+
+    deleteUser() {
+
+    }
 }
 
 module.exports = User;
