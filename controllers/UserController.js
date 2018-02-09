@@ -8,7 +8,7 @@ const config = require('../config/config');
 let userModel = new User();
 
 router.get('/', (req, res) =>{
-    res.send('hello')
+    res.send('Something changed!')
 });
 
 router.post('/create', (req, res) => {
