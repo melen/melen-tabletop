@@ -7,6 +7,10 @@ const config = require('../config/config');
 
 let userModel = new User();
 
+router.get('/', (req, res) =>{
+    res.send('hello')
+});
+
 router.post('/create', (req, res) => {
     userModel.createUser({
         name: "Test User"
