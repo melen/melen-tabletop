@@ -6,9 +6,10 @@ const User = require('../models/User');
 let gameModel = new Game();
 let userModel = new User();
 
-let auth = jwt({secret: config.jwt_secret});
+module.exports.jwt = jwt({secret: config.jwt_secret});
 
-let validateUser = function (req, res, next) {
+module.exports.validateUser = (req, res, next) => {
+    console.log(res);
     if (req.user.id !== req.param.id){
         res.status(401).send({
             type: "invalid_user",
@@ -18,7 +19,8 @@ let validateUser = function (req, res, next) {
     next();
 };
 
-let validateGame = function (req, res, next) {
+module.exports.validateGame = (req, res, next) => {
+    console.log(req);
     let game = gameModel.getGame({
         id: req.param.id
     });
@@ -31,13 +33,7 @@ let validateGame = function (req, res, next) {
     next();
 };
 
-let validateLogin = function (body) {
+module.exports.validateLogin = (body) => {
     return body['pwd'] === userModel.getUser({id: body.id})['pwd'];
 };
 
-module.exports = {
-    jwt: auth,
-    validateUser: validateUser(),
-    validateGame: validateGame(),
-    validateLogin: validateLogin()
-};
